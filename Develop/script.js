@@ -8,29 +8,21 @@
 //     .text(taskText);
 // };
 
-// //load previously added tasks
-// var loadTasks = function() {
-//   tasks = JSON.parse(localStorage.getItem("tasks"));
-
-//   // if nothing in localStorage, create a new object to track all task status arrays
-//   if (!tasks) {
-//     tasks = {
-//       hour9: [],
-//       hour10: [],
-//       hour11: [],
-//       hour12: [],
-//       hour1: [],
-//       hour2: [],
-//       hour3: [],
-//       hour4: [],
-//       hour5: []
-//     };
-//   }
-// };
+//load previously added tasks
+var loadTasks = function() {
+  for (var i = 9; i <= 17; i++){
+    var task = localStorage.getItem(i);
+    $("#hour-" + i).val(task);
+  }
+};
 //save added tasks to local storage
 
 //get task info after btn div is clicked
 $(".saveBtn").click(function(taskText) {
   var taskText = $(this).siblings("textarea").val();
-  console.log(taskText);
+  var timeBlock = $(this).attr("id").split("-")[1];
+  localStorage.setItem(timeBlock, taskText);
+  console.log(taskText, timeBlock);
 });
+
+loadTasks();
