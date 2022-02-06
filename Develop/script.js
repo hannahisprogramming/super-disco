@@ -15,6 +15,8 @@ var loadTasks = function() {
   }
 };
 
+$("#currentDay").text(moment().format("dddd, MMMM Do YYYY"));
+
 //get task info after btn div is clicked
 $(".saveBtn").click(function(taskText) {
   var taskText = $(this).siblings("textarea").val();
