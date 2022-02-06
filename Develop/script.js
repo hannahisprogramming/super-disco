@@ -1,21 +1,19 @@
-// var tasks = {};
-
-// //add task to div after btn div clicked
-// var createTask = function(taskText){
-//   //create p element for task text
-//   var taskP = $("<p>")
-//     .addClass("description")
-//     .text(taskText);
-// };
-
 //load previously added tasks
 var loadTasks = function() {
+  var currentTime = moment().hours();
+  console.log(currentTime);
   for (var i = 9; i <= 17; i++){
     var task = localStorage.getItem(i);
     $("#hour-" + i).val(task);
+    if(i < currentTime){
+      $("#hour-" + i).addClass("past");
+    } else if ( i === currentTime){
+      $("#hour-" + i).addClass("present");
+    } else {
+      $("#hour-" + i).addClass("future");
+    }
   }
 };
-//save added tasks to local storage
 
 //get task info after btn div is clicked
 $(".saveBtn").click(function(taskText) {
